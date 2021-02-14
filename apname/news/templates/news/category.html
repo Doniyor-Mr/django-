@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title%}
+{{category.title}} :: {{block.super}}
+{% endblock %}
+
+{% block sidebar %}
+
+{% include 'inc/_sidebar.html' %}
+
+{% endblock %}
+
+{% block contact %}
+
+{% for item in news%}
+<div class="card mb-3">
+    <div class="card-header">
+
+        Kategoriya: {{item.category}}
+    </div>
+    <div class="card-body">
+        {% if item.photo %}
+
+        <img src="{{ item.photo.url }}" alt="" width="350px" class="mr-3">
+        {% else %}
+        <img src="https://picsum.photos/seed/picsum/350/235" alt="" class="mr-3">
+        {% endif %}
+        <div class="media">
+            <div class="media-body">
+                <h5 class="card-title ">{{item.title}}</h5>
+                <p class="card-text">{{item.contact}}</p>
+            </div>
+        </div>
+
+
+        <a href="{{ item.get_absolute_url }}" class="btn btn-primary">hamasi.... </a>
+    </div>
+    <div class="card-footer text-muted">
+        {{item.created_at|date:'Y-m-d H:i'}}
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}
+
+
